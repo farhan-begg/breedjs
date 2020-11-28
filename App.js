@@ -1,27 +1,26 @@
-import React from 'react';
-import { StyleSheet, NavigationContainer, View, SafeAreaView, ScrollView } from 'react-native';
-import Cell from './components/Cell';
-import Cell2 from './components/Cell2';
-export default function App() {
+import { StatusBar } from 'expo-status-bar';
+import React, { useState } from 'react';
+import { StyleSheet } from 'react-native';
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './screens/HomeScreen'
+import DetailsScreen from './screens/DetailsScreen'
+
+const Stack = createStackNavigator();
+
+export default function App() {
+  const [query, setQuery] = useState('')
   return (
 
-
-    <ScrollView>
-      <Cell />
-    </ScrollView>
-
-
-
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
 
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
